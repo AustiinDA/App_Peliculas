@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Proyecto_TFG</string>
+    <string name="año_str">Año</string>
+    <string name="titulo_str">Título</string>
+</resources>
