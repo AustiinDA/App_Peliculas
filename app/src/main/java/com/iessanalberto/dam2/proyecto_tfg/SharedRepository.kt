@@ -8,20 +8,29 @@ class SharedRepository {
     suspend fun getMovieById(movieId:Int): GetMovieById? {
         val peticion = Network.clienteApi.getMovieById(movieId)
 
-        if (peticion.isSuccessful) {
-            return peticion.body()!!
+        //Recibimos una llamada a la Api, pero en vez de crashear la app, devolvemos un estado de fallo
+        if (peticion.failed){
+            return null
         }
 
-        return null
+        if (!peticion.isSuccessful) {
+            return null
+        }
+
+        return peticion.body
     }
 
     suspend fun getMovieCreditsById(movieId:Int): GetMovieCreditsById? {
         val peticion = Network.clienteApi.getMovieCreditsById(movieId)
 
-        if (peticion.isSuccessful) {
-            return peticion.body()!!
+        if (peticion.failed){
+            return null
         }
 
-        return null
+        if (!peticion.isSuccessful) {
+            return null
+        }
+
+        return peticion.body
     }
 }
