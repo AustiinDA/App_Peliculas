@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this)[SharedViewModel::class.java]
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         val directorTV = findViewById<TextView>(R.id.directorDescTextView)
         val duracionTV = findViewById<TextView>(R.id.duracionTextView)
 
-        viewModel.actualizarPelicula(564)
         // Observando el objeto con los cambios y una estructura para manejar posible errores
+        viewModel.actualizarPelicula(564)
         viewModel.movieByIdLiveData.observe(this) { respuesta ->
             if (respuesta == null) {
                 Toast.makeText(
@@ -44,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
             //Comprobamos si la  respuesta es nula y asignamos propiedades a la view
+
             //Textos
             textView.text = respuesta.title
             resumeTextView.text = respuesta.overview
@@ -65,9 +65,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-/*        //Creditos
         viewModel.actualizarCreditosPelicula(564)
-        viewModel.movieCreditsByIdLiveData.observe(this) { respuesta ->
+        viewModel.movieCreditsById.observe(this) { respuesta ->
             if (respuesta == null) {
                 Toast.makeText(
                     this@MainActivity,
@@ -84,53 +83,10 @@ class MainActivity : AppCompatActivity() {
             directorTV.text = director.joinToString(
                 transform = { item -> item.name }
             )
-        }*/
 
-
-//        tmdbService.getMovieCreditsById(
-//            564,
-//            Constantes.API_KEY,
-//            Constantes.LANGUAGE
-//        ).enqueue(object : Callback<GetMovieCreditsById> {
-//            override fun onResponse(
-//                call: Call<GetMovieCreditsById>,
-//                response: Response<GetMovieCreditsById>
-//            ) {
-//                Log.i("MainActivity", response.toString())
-//
-//                if (!response.isSuccessful) {
-//                    Toast.makeText(this@MainActivity, "Llamada de red fallida", Toast.LENGTH_SHORT)
-//                        .show()
-//                    return
-//                }
-//
-//                val body = response.body()!!
-//
-//                if (body.crew.isNotEmpty()) {
-//
-//                    val director = body.crew.filter { item ->
-//                        item.job == "Director"
-//                    }
-//
-//                    directorTV.text = director.joinToString(
-//                        transform = { item -> item.name }
-//                    )
-//
-//                } else {
-//                    generoTV.visibility = View.GONE
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<GetMovieCreditsById>, t: Throwable) {
-//                Log.i("MainActivity", t.message ?: "Null message")
-//            }
-//        })
-
-        //   }
-
+        }
 
     }
-
-
 }
+
 

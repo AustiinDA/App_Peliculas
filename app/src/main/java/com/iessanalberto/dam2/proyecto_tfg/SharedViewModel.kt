@@ -16,26 +16,24 @@ class SharedViewModel:ViewModel() {
     // siguiendo el modelo MVVM
 
     private val _movieByIdLiveData = MutableLiveData<GetMovieById>()
-//    private val _movieCreditsByIdLiveData = MutableLiveData<GetMovieCreditsById>()
-
+    private val _movieCreditsByIdLiveData = MutableLiveData<GetMovieCreditsById>()
 
     val movieByIdLiveData: LiveData<GetMovieById?> = _movieByIdLiveData
-//    val movieCreditsByIdLiveData: LiveData<GetMovieCreditsById?> = _movieCreditsByIdLiveData
+    val movieCreditsById: LiveData<GetMovieCreditsById?> = _movieCreditsByIdLiveData
 
     fun actualizarPelicula(movieId: Int){
         viewModelScope.launch {
-            val respuesta = repositorio.getMovieById(564)
+            val respuesta = repositorio.getMovieById(movieId)
 
             _movieByIdLiveData.postValue(respuesta)
         }
     }
 
-//    fun actualizarCreditosPelicula(movieId: Int){
-//        viewModelScope.launch {
-//            val respuesta = repositorio.getMovieCreditsById(564)
-//
-//            _movieCreditsByIdLiveData.postValue(respuesta)
-//        }
-//    }
+    fun actualizarCreditosPelicula(movieId: Int){
+        viewModelScope.launch {
+            val respuesta = repositorio.getMovieCreditsById(movieId)
 
+            _movieCreditsByIdLiveData.postValue(respuesta)
+        }
+    }
 }

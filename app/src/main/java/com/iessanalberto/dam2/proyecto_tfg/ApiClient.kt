@@ -13,7 +13,8 @@ class ApiClient(
         return theMovieDBService.getMovieById(movieId, Constantes.API_KEY, Constantes.LANGUAGE)
     }
 
-//    suspend fun getMovieCreditsById(movieId: Int): Response<GetMovieCreditsById> {
-//        return theMovieDBService.getMovieCreditsById(movieId, Constantes.API_KEY, Constantes.LANGUAGE)
-//    }
+    suspend fun getMovieCreditsById(movieId: Int): Response<GetMovieCreditsById> {
+        return theMovieDBService.getMovieCreditsById(movieId, Constantes.API_KEY, Constantes.LANGUAGE)
+    }
+
 }
