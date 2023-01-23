@@ -1,4 +1,4 @@
-package com.iessanalberto.dam2.proyecto_tfg
+package com.iessanalberto.dam2.proyecto_tfg.network
 
 import com.iessanalberto.dam2.proyecto_tfg.interfaces.TheMovieDBService
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes

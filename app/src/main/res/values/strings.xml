@@ -5,7 +5,7 @@
     <string name="formato_tiempo">%1$d min</string>
     <string name="duracion">Duración</string>
     <string name="generos">Generos</string>
-    <string name="fecha">Fecha de la película</string>
+    <string name="fecha">Fecha película</string>
     <string name="director">Director</string>
     <string name="nombre_del_director">Nombre del director</string>
     <string name="vista_general">Sinopsis</string>

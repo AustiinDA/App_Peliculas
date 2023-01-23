@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/aboutTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/vista_general"
+        android:textColor="?colorOnBackground"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        android:layout_margin="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/AboutImageView"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/aboutTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/aboutTextView"
+        app:srcCompat="@drawable/ic_baseline_chat_bubble_outline_24" />
+
+    <View
+        android:id="@+id/divisor"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="6dp"
+        android:background="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toEndOf="@+id/AboutImageView"
+        app:layout_constraintStart_toStartOf="@id/aboutTextView"
+        app:layout_constraintTop_toBottomOf="@id/aboutTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/resumeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:justificationMode="inter_word"
+        android:text="@string/lorem"
+
+        android:textColor="?colorOnBackground"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/divisor"
+        app:layout_constraintStart_toStartOf="@+id/divisor"
+        app:layout_constraintTop_toBottomOf="@+id/divisor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

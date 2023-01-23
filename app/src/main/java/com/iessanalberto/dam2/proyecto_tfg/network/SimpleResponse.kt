@@ -1,6 +1,5 @@
-package com.iessanalberto.dam2.proyecto_tfg
+package com.iessanalberto.dam2.proyecto_tfg.network
 
-import android.provider.VoicemailContract.Status
 import retrofit2.Response
 
 data class SimpleResponse<T>(

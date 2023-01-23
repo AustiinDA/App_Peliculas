@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/tituloTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+
+        android:layout_margin="14dp"
+        android:text="@string/titulo_str"
+        android:textColor="?colorOnBackground"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/movieImageView"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tituloTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tituloTextView"
+        app:srcCompat="@drawable/ic_baseline_movie_24" />
+
+    <TextView
+        android:id="@+id/genreDescTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generos"
+        android:textColor="?colorOnBackground"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tituloTextView"
+        app:layout_constraintTop_toBottomOf="@+id/tituloTextView" />
+
+    <TextView
+        android:id="@+id/duracionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="@string/duracion"
+        android:textColor="?colorOnBackground"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/yearTextView"
+        app:layout_constraintStart_toEndOf="@+id/duracionImageView"
+        app:layout_constraintTop_toTopOf="@+id/yearTextView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/duracionImageView"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/duracionTextView"
+        app:layout_constraintEnd_toStartOf="@+id/duracionTextView"
+        app:layout_constraintStart_toEndOf="@+id/yearTextView"
+        app:layout_constraintTop_toTopOf="@+id/duracionTextView"
+        app:srcCompat="@drawable/ic_baseline_access_time_24" />
+
+    <TextView
+        android:id="@+id/yearTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="@string/fecha"
+        android:textColor="?colorOnBackground"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/calendarImageView"
+        app:layout_constraintTop_toBottomOf="@+id/genreDescTextView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/calendarImageView"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/yearTextView"
+        app:layout_constraintEnd_toStartOf="@+id/yearTextView"
+        app:layout_constraintStart_toStartOf="@+id/genreDescTextView"
+        app:layout_constraintTop_toTopOf="@+id/yearTextView"
+        app:srcCompat="@drawable/ic_baseline_today_24" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
