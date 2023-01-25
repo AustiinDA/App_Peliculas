@@ -1,9 +1,11 @@
 package com.iessanalberto.dam2.proyecto_tfg.network
 
 import com.iessanalberto.dam2.proyecto_tfg.interfaces.TheMovieDBService
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetPopularMovies
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
 import retrofit2.Response
 
 class ApiClient(
@@ -28,6 +30,27 @@ class ApiClient(
             )
         }
     }
+
+    suspend fun getPopularMoviesPage(pageIndex: Int): SimpleResponse<GetPopularMovies> {
+        return llamadaApiSegura {
+            theMovieDBService.getPopularMoviesPage(
+                pageIndex,
+                Constantes.API_KEY,
+                Constantes.LANGUAGE
+            )
+        }
+    }
+
+    suspend fun getMovieDiscoveryPage(pageIndex: Int): SimpleResponse<GetMovieDiscovery> {
+        return llamadaApiSegura {
+            theMovieDBService.getMovieDiscoveryPage(
+                pageIndex,
+                Constantes.API_KEY,
+                Constantes.LANGUAGE
+            )
+        }
+    }
+
 
     // Funcion parametrizada que recibe un indicador de excepciones y devuelve una respuesta parametrizada
     private inline fun <T> llamadaApiSegura(llamadaApi: () -> Response<T>): SimpleResponse<T> {

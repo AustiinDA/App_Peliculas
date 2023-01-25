@@ -1,7 +1,7 @@
 package com.iessanalberto.dam2.proyecto_tfg
 
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
 
 class SharedRepository {

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Observando el objeto con los cambios y una estructura para manejar posible errores
         viewModel.actualizarPelicula(78)

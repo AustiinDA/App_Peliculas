@@ -6,9 +6,8 @@ import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieCreditsBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsDataBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsHeaderBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsImageBinding
-import com.iessanalberto.dam2.proyecto_tfg.modelos.Crew
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import com.squareup.picasso.Picasso
 
@@ -42,7 +41,7 @@ class MovieDetailEpoxyController : EpoxyController() {
             }
         }
 
-    //Comprobamos si al construir los modelos obtenermos respuesta
+    //Comprobamos si al construir los modelos obtenemos respuesta
     override fun buildModels() {
         if (isLoading) {
             CargaModelos().id("load").addTo(this)
@@ -117,7 +116,7 @@ class MovieDetailEpoxyController : EpoxyController() {
     }
 
     data class HeaderCreditsEpoxyModel(
-        val director: List<Crew>
+        val director: List<GetMovieCreditsById.Crew>
     ) : ViewBindingKotlinModel<ModelMovieCreditsBinding>(R.layout.model_movie_credits) {
         override fun ModelMovieCreditsBinding.bind() {
             directorDescTextView.text = director.joinToString(

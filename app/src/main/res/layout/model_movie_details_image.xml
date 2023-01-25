@@ -5,17 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/headerImg"
+    <com.bosphere.fadingedgelayout.FadingEdgeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic[9]" />
+        android:layout_height="match_parent"
+        app:fel_size_bottom="70dp"
+        app:fel_edge="bottom">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/headerImg"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic[9]" />
+    </com.bosphere.fadingedgelayout.FadingEdgeLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -26,7 +32,7 @@
         app:cardElevation="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@tools:sample/avatars">
+        tools:src="@tools:sample/avatars[3]">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/posterImg"

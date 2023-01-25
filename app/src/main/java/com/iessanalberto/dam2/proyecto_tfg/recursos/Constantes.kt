@@ -6,4 +6,7 @@ object Constantes {
     const val URL_BASE: String = "https://api.themoviedb.org/"
     const val PAGE: Int = 1
     const val LANGUAGE: String = "es-ES"
+
+    const val PAGE_SIZE = 20
+    const val PREFETCH_DISTANCE = PAGE_SIZE * 2
 }

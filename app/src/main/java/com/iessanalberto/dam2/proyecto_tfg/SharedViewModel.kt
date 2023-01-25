@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
 import kotlinx.coroutines.launch
 
 class SharedViewModel:ViewModel() {

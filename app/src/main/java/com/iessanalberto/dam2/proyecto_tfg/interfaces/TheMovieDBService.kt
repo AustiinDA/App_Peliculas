@@ -1,8 +1,9 @@
 package com.iessanalberto.dam2.proyecto_tfg.interfaces
 
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.modelos.GetMovieCreditsById
-import retrofit2.Call
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
+import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetPopularMovies
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,4 +25,19 @@ interface TheMovieDBService {
         @Query("api_key") apiKey: String,
         @Query("language") language: String
     ): Response<GetMovieCreditsById>
+
+    @GET("/3/movie/popular/")
+    suspend fun getPopularMoviesPage(
+        @Query("page") pageIndex: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+    ): Response<GetPopularMovies>
+
+    @GET("/3/discover/movie")
+    suspend fun getMovieDiscoveryPage(
+        @Query("page") pageIndex: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+//     ,@Query("sort_by") sortBy: String
+    ): Response<GetMovieDiscovery>
 }
