@@ -1,16 +1,18 @@
 package com.iessanalberto.dam2.proyecto_tfg
 
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.CreditsMapper
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MovieMapper
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
 
 class SharedRepository {
 
-    suspend fun getMovieById(movieId:Int): GetMovieById? {
+    suspend fun getMovieById(movieId: Int): Movie? {
         val peticion = Network.clienteApi.getMovieById(movieId)
 
         //Recibimos una llamada a la Api, pero en vez de crashear la app, devolvemos un estado de fallo
-        if (peticion.failed){
+        if (peticion.failed) {
             return null
         }
 
@@ -18,13 +20,16 @@ class SharedRepository {
             return null
         }
 
-        return peticion.body
+        return MovieMapper.buildOf(
+            respuesta = peticion.body,
+            genres = peticion.body.genres
+        )
     }
 
-    suspend fun getMovieCreditsById(movieId:Int): GetMovieCreditsById? {
+    suspend fun getMovieCreditsById(movieId: Int): Credits? {
         val peticion = Network.clienteApi.getMovieCreditsById(movieId)
 
-        if (peticion.failed){
+        if (peticion.failed) {
             return null
         }
 
@@ -32,6 +37,12 @@ class SharedRepository {
             return null
         }
 
-        return peticion.body
+        return CreditsMapper.buildOf(
+            respuesta = peticion.body,
+            crew = peticion.body.crew,
+            cast = peticion.body.cast
+        )
     }
+
+
 }

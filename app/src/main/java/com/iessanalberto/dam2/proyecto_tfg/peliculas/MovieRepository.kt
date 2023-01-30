@@ -1,8 +1,8 @@
 package com.iessanalberto.dam2.proyecto_tfg.peliculas
 
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetPopularMovies
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetPopularMovies
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscovery
 
 class MovieRepository {
     suspend fun fetchMoviePage(pageIndex: Int): GetMovieDiscovery? {

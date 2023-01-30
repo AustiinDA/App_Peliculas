@@ -1,9 +1,6 @@
 package com.iessanalberto.dam2.proyecto_tfg.interfaces
 
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetPopularMovies
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -38,6 +35,5 @@ interface TheMovieDBService {
         @Query("page") pageIndex: Int,
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-//     ,@Query("sort_by") sortBy: String
     ): Response<GetMovieDiscovery>
 }

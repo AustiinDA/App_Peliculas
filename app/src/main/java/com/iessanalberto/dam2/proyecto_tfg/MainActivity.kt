@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Observando el objeto con los cambios y una estructura para manejar posible errores
-        viewModel.actualizarPelicula(78)
-        viewModel.movieByIdLiveData.observe(this) { respuesta ->
+        viewModel.actualizarPelicula(11104)
+        viewModel.movieByIdLiveData.observe(this) { movie ->
 
-            epoxyController.respuestaPeli = respuesta
+            epoxyController.movie = movie
 
-            if (respuesta == null) {
+            if (movie == null) {
                 Toast.makeText(
                     this@MainActivity,
                     "Llamada de red fallida",
@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.actualizarCreditosPelicula(78)
-        viewModel.movieCreditsById.observe(this) { respuesta ->
+        viewModel.actualizarCreditosPelicula(11104)
+        viewModel.movieCreditsById.observe(this) { credits ->
 
-            epoxyController.respuestaCreditos = respuesta
+            epoxyController.credits = credits
 
-            if (respuesta == null) {
+            if (credits == null) {
                 Toast.makeText(
                     this@MainActivity,
                     "Llamada de red fallida",
@@ -60,8 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        viewModel.actualizarPelicula(78)
-        viewModel.actualizarCreditosPelicula(78)
+        viewModel.actualizarCreditosPelicula(11104)
         //Obtenemos el recyclerview del layout y llamamos a la funcion para establecer su función
         val epoxyRecyclerView = findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)
         epoxyRecyclerView.setControllerAndBuildModels(epoxyController)

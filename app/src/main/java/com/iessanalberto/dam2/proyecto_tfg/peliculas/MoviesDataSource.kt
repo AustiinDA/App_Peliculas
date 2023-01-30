@@ -3,10 +3,9 @@ package com.iessanalberto.dam2.proyecto_tfg.peliculas
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscovery
 
-class PeliculasDataSource(
+class MoviesDataSource(
     private val repository: MovieRepository
 
 ) : PagingSource<Int, GetMovieDiscovery>() {

@@ -1,4 +1,4 @@
-package com.iessanalberto.dam2.proyecto_tfg.respuestas
+package com.iessanalberto.dam2.proyecto_tfg.network.respuestas
 
 data class GetMovieDiscovery(
     val page: Int,

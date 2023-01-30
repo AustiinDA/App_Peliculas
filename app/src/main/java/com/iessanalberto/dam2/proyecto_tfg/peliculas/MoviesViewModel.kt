@@ -22,7 +22,7 @@ class MoviesViewModel : ViewModel() {
             enablePlaceholders = false
         )
     ) {
-        PeliculasDataSource(repository)
+        MoviesDataSource(repository)
     }.flow.cachedIn(viewModelScope)
 
 }

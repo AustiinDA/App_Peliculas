@@ -1,11 +1,8 @@
 package com.iessanalberto.dam2.proyecto_tfg.network
 
 import com.iessanalberto.dam2.proyecto_tfg.interfaces.TheMovieDBService
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetPopularMovies
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.*
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
 import retrofit2.Response
 
 class ApiClient(
@@ -51,7 +48,6 @@ class ApiClient(
         }
     }
 
-
     // Funcion parametrizada que recibe un indicador de excepciones y devuelve una respuesta parametrizada
     private inline fun <T> llamadaApiSegura(llamadaApi: () -> Response<T>): SimpleResponse<T> {
         return try {
@@ -60,4 +56,11 @@ class ApiClient(
             SimpleResponse.failure(e)
         }
     }
+//
+//    suspend fun getGenres(genreId: Int): SimpleResponse<GetGenres>{
+//        return llamadaApiSegura { theMovieDBService.getGenres(
+//            Constantes.API_KEY,
+//            Constantes.LANGUAGE
+//        ) }
+//    }
 }

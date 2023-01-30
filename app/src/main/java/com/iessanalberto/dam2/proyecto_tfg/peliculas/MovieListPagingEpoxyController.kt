@@ -5,8 +5,8 @@ import com.airbnb.epoxy.paging.PagedListEpoxyController
 import com.iessanalberto.dam2.proyecto_tfg.R
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieListItemBinding
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.ViewBindingKotlinModel
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieDiscovery
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetPopularMovies
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscovery
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetPopularMovies
 import com.squareup.picasso.Picasso
 import retrofit2.Response
 

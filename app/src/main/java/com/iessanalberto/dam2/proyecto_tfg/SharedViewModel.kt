@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
 import kotlinx.coroutines.launch
 
 class SharedViewModel:ViewModel() {
@@ -15,11 +17,11 @@ class SharedViewModel:ViewModel() {
     // pueda cambiar los datos, queremos que solo pueda leerlos. Y solo podremos modificarlo en esta SharedViewModel
     // siguiendo el modelo MVVM
 
-    private val _movieByIdLiveData = MutableLiveData<GetMovieById>()
-    private val _movieCreditsByIdLiveData = MutableLiveData<GetMovieCreditsById>()
+    private val _movieByIdLiveData = MutableLiveData<Movie?>()
+    private val _movieCreditsByIdLiveData = MutableLiveData<Credits?>()
 
-    val movieByIdLiveData: LiveData<GetMovieById?> = _movieByIdLiveData
-    val movieCreditsById: LiveData<GetMovieCreditsById?> = _movieCreditsByIdLiveData
+    val movieByIdLiveData: LiveData<Movie?> = _movieByIdLiveData
+    val movieCreditsById: LiveData<Credits?> = _movieCreditsByIdLiveData
 
     fun actualizarPelicula(movieId: Int){
         viewModelScope.launch {

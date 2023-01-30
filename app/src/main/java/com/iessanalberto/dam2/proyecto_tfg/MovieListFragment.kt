@@ -27,9 +27,7 @@ class MovieListFragment : Fragment() {
         }
     }
 
-    override fun onCreate( savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    private fun onMovieSelected(movieId: Int) {
 
     }
 }

@@ -1,13 +1,17 @@
 package com.iessanalberto.dam2.proyecto_tfg.epoxy
 
+import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
 import com.iessanalberto.dam2.proyecto_tfg.R
+import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelActorCarouselItemBinding
+import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelCastTitleBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieCreditsBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsDataBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsHeaderBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsImageBinding
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import com.squareup.picasso.Picasso
 
@@ -23,7 +27,7 @@ class MovieDetailEpoxyController : EpoxyController() {
             }
         }
 
-    var respuestaCreditos: GetMovieCreditsById? = null
+    var credits: Credits? = null
         set(value) {
             field = value
             if (field != null) {
@@ -32,7 +36,7 @@ class MovieDetailEpoxyController : EpoxyController() {
             }
         }
 
-    var respuestaPeli: GetMovieById? = null
+    var movie: Movie? = null
         set(value) {
             field = value
             if (field != null) {
@@ -48,7 +52,7 @@ class MovieDetailEpoxyController : EpoxyController() {
             return
         }
 
-        if (respuestaPeli == null) {
+        if (movie == null) {
             //TODO estado de fallo
             return
         }
@@ -56,20 +60,20 @@ class MovieDetailEpoxyController : EpoxyController() {
         //Asignamos los valores del constructor con los datos de la api, filtrandolos y manejandolos
         ImageEpoxyModel(
 
-            backdropUrl = Constantes.POSTER_PATH + respuestaPeli!!.backdrop_path,
-            posterUrl = Constantes.POSTER_PATH + respuestaPeli!!.poster_path
+            backdropUrl = Constantes.POSTER_PATH + movie!!.backdrop_path,
+            posterUrl = Constantes.POSTER_PATH + movie!!.poster_path
 
         ).id("image").addTo(this)
         HeaderEpoxyModel(
 
             //Textos
-            title = respuestaPeli!!.title,
-            genre = respuestaPeli!!.genres.joinToString(
+            title = movie!!.title,
+            genre = movie!!.genres.joinToString(
                 separator = ", ",
                 transform = { genre -> genre.name }),
 
-            date = respuestaPeli!!.release_date,
-            duration = respuestaPeli!!.runtime,
+            date = movie!!.release_date,
+            duration = movie!!.runtime,
 
 
             ).id("header").addTo(this)
@@ -77,7 +81,7 @@ class MovieDetailEpoxyController : EpoxyController() {
 
 
 
-        respuestaCreditos?.crew?.let {
+        credits?.crew?.let {
             HeaderCreditsEpoxyModel(
                 //iteramos y filtramos los directores
                 director = it
@@ -86,12 +90,31 @@ class MovieDetailEpoxyController : EpoxyController() {
                     }
             ).id("credits").addTo(this)
         }
+        val imgActor = Constantes.POSTER_PATH
+
+
+//            actorImgUrl = Constantes.POSTER_PATH + credits!!.cast.joinToString(transform = { it.profile_path.toString() })
 
 
         DataEpoxyModel(
-            resume = respuestaPeli!!.overview
+            resume = movie!!.overview
 
         ).id("data").addTo(this)
+
+
+        CastTextModel(
+            texto = "Actores principales"
+        ).id("texto").addTo(this)
+
+        val actors = credits!!.cast.map {
+            CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path).id(it.id)
+        }
+
+        CarouselModel_()
+            .id("carousel")
+            .models(actors.take(15))
+            .numViewsToShowOnScreen(3.0f)
+            .addTo(this)
     }
 
     data class HeaderEpoxyModel(
@@ -137,11 +160,30 @@ class MovieDetailEpoxyController : EpoxyController() {
         }
     }
 
+    data class CastTextModel(
+        val texto: String
+    ): ViewBindingKotlinModel<ModelCastTitleBinding>(R.layout.model_cast_title){
+        override fun ModelCastTitleBinding.bind() {
+            textoActores.text = texto
+        }
+    }
     data class DataEpoxyModel(
         val resume: String
     ) : ViewBindingKotlinModel<ModelMovieDetailsDataBinding>(R.layout.model_movie_details_data) {
         override fun ModelMovieDetailsDataBinding.bind() {
             resumeTextView.text = resume
         }
+    }
+
+    data class CastCarouselItemEpoxyModel(
+        val cast: GetMovieCreditsById.Cast,
+        val img: String
+//        val actorImgUrl: String
+    ) : ViewBindingKotlinModel<ModelActorCarouselItemBinding>(R.layout.model_actor_carousel_item) {
+        override fun ModelActorCarouselItemBinding.bind() {
+            castTextView.text = cast.original_name
+            Picasso.get().load(img).into(actorImg)
+        }
+
     }
 }
