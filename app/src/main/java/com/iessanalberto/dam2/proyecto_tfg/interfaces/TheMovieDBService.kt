@@ -30,10 +30,19 @@ interface TheMovieDBService {
         @Query("language") language: String
     ): Response<GetPopularMovies>
 
+    //Lista paginada de pelis
     @GET("/3/discover/movie")
     suspend fun getMovieDiscoveryPage(
         @Query("page") pageIndex: Int,
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): Response<GetMovieDiscovery>
+    ): Response<GetMovieDiscoveryPage>
+
+    //Resultados con sus ids y caracteristicas
+    @GET("/3/discover/movie")
+    suspend fun getMovieDiscoveryById(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+    ): Response<GetMovieDiscoveryById>
 }
+

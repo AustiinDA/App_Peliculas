@@ -106,15 +106,17 @@ class MovieDetailEpoxyController : EpoxyController() {
             texto = "Actores principales"
         ).id("texto").addTo(this)
 
-        val actors = credits!!.cast.map {
-            CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path).id(it.id)
-        }
+//TODO Null pointer al cargar el carousel de actores
 
-        CarouselModel_()
-            .id("carousel")
-            .models(actors.take(15))
-            .numViewsToShowOnScreen(3.0f)
-            .addTo(this)
+//        val actors = credits!!.cast.map {
+//            CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path).id(it.id)
+//        }
+//
+//        CarouselModel_()
+//            .id("carousel")
+//            .models(actors.take(5))
+//            .numViewsToShowOnScreen(3.0f)
+//            .addTo(this)
     }
 
     data class HeaderEpoxyModel(

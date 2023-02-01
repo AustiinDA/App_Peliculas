@@ -38,10 +38,19 @@ class ApiClient(
         }
     }
 
-    suspend fun getMovieDiscoveryPage(pageIndex: Int): SimpleResponse<GetMovieDiscovery> {
+    suspend fun getMovieDiscoveryPage(pageIndex: Int): SimpleResponse<GetMovieDiscoveryPage> {
         return llamadaApiSegura {
             theMovieDBService.getMovieDiscoveryPage(
                 pageIndex,
+                Constantes.API_KEY,
+                Constantes.LANGUAGE
+            )
+        }
+    }
+
+    suspend fun getMovieDiscoveryById(): SimpleResponse<GetMovieDiscoveryById>{
+        return llamadaApiSegura {
+            theMovieDBService.getMovieDiscoveryById(
                 Constantes.API_KEY,
                 Constantes.LANGUAGE
             )

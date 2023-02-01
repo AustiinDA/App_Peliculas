@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
     android:elevation="10dp"
     app:cardCornerRadius="4dp"
     app:strokeColor="?colorOnSurface"
-    app:strokeWidth="1px">
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/actorImgSpace"
         android:layout_width="match_parent"
-        android:elevation="10dp"
         android:layout_height="150dp">
 
         <androidx.appcompat.widget.AppCompatImageView

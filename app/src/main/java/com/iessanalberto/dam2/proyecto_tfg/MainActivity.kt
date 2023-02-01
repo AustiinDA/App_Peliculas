@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        viewModel.actualizarCreditosPelicula(11104)
         //Obtenemos el recyclerview del layout y llamamos a la funcion para establecer su función
         val epoxyRecyclerView = findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)
         epoxyRecyclerView.setControllerAndBuildModels(epoxyController)

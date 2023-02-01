@@ -13,4 +13,15 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="ShapeAppearanceOverlay.ProyectoTFG" parent="">
+        <item name="cornerSize">15%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="Widget.Material3.CardView.Elevated.ProyectoTFG" parent="">
+        <item name="cornerSize">15%</item>
+        <item name="elevation">15dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>

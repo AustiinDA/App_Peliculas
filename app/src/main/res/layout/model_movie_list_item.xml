@@ -22,9 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#A9000000"
-            android:padding="14dp"
+            android:padding="12dp"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="El Renacido" />

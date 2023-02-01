@@ -7,21 +7,23 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="com.iessanalberto.dam2.proyecto_tfg.MovieListFragment"
+        android:name="com.iessanalberto.dam2.proyecto_tfg.peliculas.MovieListFragment"
         android:label="Películas en portada"
-        tools:layout="@layout/fragment_movie_list" >
+        tools:layout="@layout/fragment_movie_list">
         <action
             android:id="@+id/action_movieListFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.iessanalberto.dam2.proyecto_tfg.MovieDetailFragment"
+        android:name="com.iessanalberto.dam2.proyecto_tfg.peliculas.MovieDetailFragment"
         android:label="Detalles"
         tools:layout="@layout/fragment_movie_detail">
 
-        <argument android:name="movieId"
-            app:argType="integer"
-            android:defaultValue="-1"/>
+        <argument
+            android:name="movieId"
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
 </navigation>
