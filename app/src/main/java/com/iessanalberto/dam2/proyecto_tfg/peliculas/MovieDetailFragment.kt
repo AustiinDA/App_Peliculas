@@ -50,8 +50,24 @@ class MovieDetailFragment : Fragment() {
                 return@observe
             }
         }
-
         viewModel.tomarPelicula(movieId = safeArgs.movieId)
+
+        viewModel.movieLiveDataCredits.observe(viewLifecycleOwner) { credits ->
+            epoxyController.credits = credits
+
+            if (credits == null) {
+                Toast.makeText(
+                    requireActivity(), "Llamada de red fallida",
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().navigateUp()
+
+                return@observe
+            }
+        }
+        viewModel.tomarCreditos(movieId = safeArgs.movieId)
+
+
         val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)
         epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
 

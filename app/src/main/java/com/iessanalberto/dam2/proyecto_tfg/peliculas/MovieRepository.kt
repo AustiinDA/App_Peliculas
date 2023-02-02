@@ -1,7 +1,9 @@
 package com.iessanalberto.dam2.proyecto_tfg.peliculas
 
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.CreditsMapper
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.DiscoverMapper
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MovieMapper
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Discover
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
@@ -47,6 +49,25 @@ class MovieRepository {
             genres = peticion.body.genres
         )
     }
+
+    suspend fun getMovieCreditsById(movieId: Int): Credits? {
+        val peticion = Network.clienteApi.getMovieCreditsById(movieId)
+
+        if (peticion.failed) {
+            return null
+        }
+
+        if (!peticion.isSuccessful) {
+            return null
+        }
+
+        return CreditsMapper.buildOf(
+            respuesta = peticion.body,
+            crew = peticion.body.crew,
+            cast = peticion.body.cast
+        )
+    }
+
 //    private suspend fun getMoviesFromDiscovery(
 //        movieById: GetMovieById
 //    ):List<GetMovieDiscoveryById>{
