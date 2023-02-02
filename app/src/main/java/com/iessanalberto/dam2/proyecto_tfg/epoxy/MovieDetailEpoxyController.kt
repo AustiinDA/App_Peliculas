@@ -115,7 +115,7 @@ class MovieDetailEpoxyController : EpoxyController() {
 //        CarouselModel_()
 //            .id("carousel")
 //            .models(actors.take(5))
-//            .numViewsToShowOnScreen(3.0f)
+//            .numViewsToShowOnScreen(2.0f)
 //            .addTo(this)
     }
 
@@ -180,7 +180,6 @@ class MovieDetailEpoxyController : EpoxyController() {
     data class CastCarouselItemEpoxyModel(
         val cast: GetMovieCreditsById.Cast,
         val img: String
-//        val actorImgUrl: String
     ) : ViewBindingKotlinModel<ModelActorCarouselItemBinding>(R.layout.model_actor_carousel_item) {
         override fun ModelActorCarouselItemBinding.bind() {
             castTextView.text = cast.original_name

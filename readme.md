@@ -1,4 +1,4 @@
-#Proyecto Final de Grado
+# Proyecto Final de Grado
 
 Documentación para el proyecto Kotlin de fin de grado.
 
@@ -12,14 +12,28 @@ Documentación para el proyecto Kotlin de fin de grado.
 
 ### Principales tecnologías usadas
 
-- Kotlin 213-1.7.20
+- Kotlin 213-1.7.21
 - [Retrofit 2](https://square.github.io/retrofit/)
-- [Android Jetpack](https://developer.android.com/jetpack?gclid=Cj0KCQiA4uCcBhDdARIsAH5jyUnRl6z4Z7g894davQ7g6HzhvYfUXng7O7sljsP_oTm3d7xSetUB128aAj-vEALw_wcB&gclsrc=aw.ds)
+- [Android Jetpack](https://developer.android.com/jetpack?hl=es-419)
 - [MongoDB](https://www.mongodb.com/)
 
-### Metodologías usadas
+### Metodologías y librerias usadas
+* Arquitectura - Colección de librerias y metodologías para diseñar una app estable y robusta
+    * [Arquitectura MVVM de Android](https://developer.android.com/jetpack/guide?hl=es-419)
+    * [Data Binding](https://developer.android.com/topic/libraries/data-binding?hl=es-419)
+    * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=es-419)
+    * [Navigation](https://developer.android.com/guide/navigation?hl=es-419)
+    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel?hl=es-419)
+    * [Paginación](https://developer.android.com/topic/libraries/architecture/paging/v3-overview?hl=es-419) (Paging 3) 
 
-- Arquitectura MVVM de Android
-- Procesado asíncrono 
-- Corrutinas de Kotlin
-- LiveData
+
+* Interfaz | UI - Componentes que detallan la visualización y el como operan 
+  * Animaciones y transiciones
+  * Fragmentos
+  * Layout
+  * Epoxy
+
+  
+* Otras librerías usadas 
+    * Dagger Hilt - Inyección de dependencias
+    * Corrutinas Kotlin - Manejan los hilos y simplifica el codigo en las llamadas
