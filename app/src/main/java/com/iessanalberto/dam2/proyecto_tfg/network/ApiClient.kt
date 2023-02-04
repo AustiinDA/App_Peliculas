@@ -1,7 +1,11 @@
 package com.iessanalberto.dam2.proyecto_tfg.network
 
 import com.iessanalberto.dam2.proyecto_tfg.interfaces.TheMovieDBService
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.*
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscoveryById
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscoveryPage
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetPopularMovies
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import retrofit2.Response
 

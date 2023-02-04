@@ -1,6 +1,5 @@
 package com.iessanalberto.dam2.proyecto_tfg.network
 
-import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.iessanalberto.dam2.proyecto_tfg.TFGApplication

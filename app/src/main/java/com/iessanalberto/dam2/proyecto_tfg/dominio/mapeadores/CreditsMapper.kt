@@ -1,7 +1,6 @@
 package com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores
 
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
 import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
 
 object CreditsMapper {
