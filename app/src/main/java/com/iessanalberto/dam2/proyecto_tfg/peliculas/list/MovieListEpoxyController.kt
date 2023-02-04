@@ -1,4 +1,4 @@
-package com.iessanalberto.dam2.proyecto_tfg.peliculas
+package com.iessanalberto.dam2.proyecto_tfg.peliculas.list
 
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging3.PagingDataEpoxyController
@@ -10,7 +10,6 @@ import com.iessanalberto.dam2.proyecto_tfg.epoxy.ViewBindingKotlinModel
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.ObsoleteCoroutinesApi
-import java.text.FieldPosition
 
 
 @OptIn(ObsoleteCoroutinesApi::class)

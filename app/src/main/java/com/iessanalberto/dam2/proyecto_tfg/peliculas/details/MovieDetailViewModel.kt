@@ -1,4 +1,4 @@
-package com.iessanalberto.dam2.proyecto_tfg.peliculas
+package com.iessanalberto.dam2.proyecto_tfg.peliculas.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.peliculas.MovieRepository
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel: ViewModel() {

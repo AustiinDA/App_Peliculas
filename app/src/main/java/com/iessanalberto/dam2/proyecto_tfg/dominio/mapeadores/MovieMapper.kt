@@ -5,9 +5,8 @@ import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
 
 object MovieMapper {
     fun buildOf(
-        respuesta: GetMovieById,
-        genres: List<GetMovieById.Genre>
-        ): Movie {
+        respuesta: GetMovieById
+    ): Movie {
         return Movie(
             backdrop_path = respuesta.backdrop_path,
             id = respuesta.id,
@@ -16,7 +15,7 @@ object MovieMapper {
             release_date = respuesta.release_date,
             runtime = respuesta.runtime,
             title = respuesta.title,
-            genres = genres
+            genres = respuesta.genres.map { GenreMapper.buildOf(it) }
         )
     }
 }

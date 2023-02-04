@@ -21,8 +21,7 @@ class SharedRepository {
         }
 
         return MovieMapper.buildOf(
-            respuesta = peticion.body,
-            genres = peticion.body.genres
+            respuesta = peticion.body
         )
     }
 

@@ -7,8 +7,6 @@ import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Discover
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscoveryById
 import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscoveryPage
 
 class MovieRepository {
@@ -45,8 +43,7 @@ class MovieRepository {
         }
 
         return MovieMapper.buildOf(
-            respuesta = peticion.body,
-            genres = peticion.body.genres
+            respuesta = peticion.body
         )
     }
 

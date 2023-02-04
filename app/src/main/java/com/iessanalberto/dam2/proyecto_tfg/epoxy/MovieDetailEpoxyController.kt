@@ -90,7 +90,6 @@ class MovieDetailEpoxyController : EpoxyController() {
                     }
             ).id("credits").addTo(this)
         }
-        val imgActor = Constantes.POSTER_PATH
 
 
 //            actorImgUrl = Constantes.POSTER_PATH + credits!!.cast.joinToString(transform = { it.profile_path.toString() })
@@ -106,17 +105,23 @@ class MovieDetailEpoxyController : EpoxyController() {
             texto = "Actores principales"
         ).id("texto").addTo(this)
 
-//TODO Null pointer al cargar el carousel de actores
 
-//        val actors = credits!!.cast.map {
-//            CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path).id(it.id)
-//        }
-//
-//        CarouselModel_()
-//            .id("carousel")
-//            .models(actors.take(5))
-//            .numViewsToShowOnScreen(2.0f)
-//            .addTo(this)
+// Display de actores con scroll horizontal
+        val imgActor = Constantes.POSTER_PATH
+
+        val cast = credits?.cast
+            ?.map {
+                    CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path).id(it.id)
+            }
+
+            if (cast != null) {
+                CarouselModel_()
+                    .id("carousel")
+                    .models(cast.take(8))
+                    .numViewsToShowOnScreen(3.5f)
+                    .addTo(this)
+            }
+
     }
 
     data class HeaderEpoxyModel(
@@ -164,11 +169,12 @@ class MovieDetailEpoxyController : EpoxyController() {
 
     data class CastTextModel(
         val texto: String
-    ): ViewBindingKotlinModel<ModelCastTitleBinding>(R.layout.model_cast_title){
+    ) : ViewBindingKotlinModel<ModelCastTitleBinding>(R.layout.model_cast_title) {
         override fun ModelCastTitleBinding.bind() {
             textoActores.text = texto
         }
     }
+
     data class DataEpoxyModel(
         val resume: String
     ) : ViewBindingKotlinModel<ModelMovieDetailsDataBinding>(R.layout.model_movie_details_data) {
@@ -183,7 +189,7 @@ class MovieDetailEpoxyController : EpoxyController() {
     ) : ViewBindingKotlinModel<ModelActorCarouselItemBinding>(R.layout.model_actor_carousel_item) {
         override fun ModelActorCarouselItemBinding.bind() {
             castTextView.text = cast.original_name
-            Picasso.get().load(img).into(actorImg)
+            Picasso.get().load(img).placeholder(R.drawable.baseline_person_24).into(actorImg)
         }
 
     }

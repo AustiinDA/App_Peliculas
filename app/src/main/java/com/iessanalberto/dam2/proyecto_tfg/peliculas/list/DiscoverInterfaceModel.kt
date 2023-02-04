@@ -1,4 +1,4 @@
-package com.iessanalberto.dam2.proyecto_tfg.peliculas
+package com.iessanalberto.dam2.proyecto_tfg.peliculas.list
 
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Discover
 

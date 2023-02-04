@@ -4,6 +4,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.DiscoverMapper
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
+import com.iessanalberto.dam2.proyecto_tfg.peliculas.list.DiscoverInterfaceModel
+
 //Documentación rápida -> https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data?hl=es-419
 class MoviePagingSource(
     private val repository: MovieRepository

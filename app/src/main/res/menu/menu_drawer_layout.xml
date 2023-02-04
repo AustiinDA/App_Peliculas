@@ -4,5 +4,9 @@
     <item android:title="Películas"
         android:id="@+id/movieListFragment"
         android:icon="@drawable/ic_baseline_movie_24"/>
+
+        <item android:title="Buscar películas"
+            android:id="@+id/searchMovie"
+            android:icon="@drawable/baseline_search_24"/>
     </group>
 </menu>
