@@ -3,6 +3,7 @@ package com.iessanalberto.dam2.proyecto_tfg.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.iessanalberto.dam2.proyecto_tfg.TFGApplication
 import com.iessanalberto.dam2.proyecto_tfg.network.ApiClient
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
@@ -15,8 +16,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
-
 /*Esta clase nos sirve para inyectar dependencias sin obtener las fugas de memoria de "context"*/
 //TODO Aun sin implementar las inyecciones a las vistas y fragmentos
 @Module

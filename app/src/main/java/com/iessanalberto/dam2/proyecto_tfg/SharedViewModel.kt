@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
 import com.iessanalberto.dam2.proyecto_tfg.network.AppCache
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
 import kotlinx.coroutines.launch
 
 class SharedViewModel : ViewModel() {

@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
+import kotlinx.coroutines.flow.map
 
 // Usamos el flujo que ofrece el paginado para cargar muchos datos
 // Lo sacamos directamente de la documentación android https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data?hl=es-419

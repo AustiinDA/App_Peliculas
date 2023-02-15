@@ -1,11 +1,17 @@
 package com.iessanalberto.dam2.proyecto_tfg
 
+import android.graphics.Movie
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.MovieDetailEpoxyController
+import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
+import com.squareup.picasso.Picasso
 
 
 class MainActivity : AppCompatActivity() {
