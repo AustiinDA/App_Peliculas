@@ -14,8 +14,7 @@
             android:id="@+id/action_movieListFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            />
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 
     <fragment
@@ -29,4 +28,11 @@
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/movieSearchFragment"
+        android:name="com.iessanalberto.dam2.proyecto_tfg.peliculas.search.MovieSearchFragment"
+        android:label="Busqueda de películas"
+        tools:layout="@layout/fragment_movie_search" />
+
 </navigation>

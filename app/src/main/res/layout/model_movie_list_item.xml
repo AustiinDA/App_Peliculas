@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            tools:src="@tools:sample/avatars[4]" />
+            tools:src="@tools:sample/avatars[28]" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/movieTitleTextView"
@@ -27,7 +27,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="El Renacido" />
+            tools:text="Título de la película" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

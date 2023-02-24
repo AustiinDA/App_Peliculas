@@ -44,4 +44,7 @@ data class SimpleResponse<T>(
     //    El cuerpo recibe cualquier tipo parametrizado
     val body: T
         get() = this.data!!.body()!!
+
+    val bodyNullable: T?
+        get() = this.data?.body()
 }

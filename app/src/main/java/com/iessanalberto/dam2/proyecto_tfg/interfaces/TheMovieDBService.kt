@@ -44,5 +44,21 @@ interface TheMovieDBService {
         @Query("api_key") apiKey: String,
         @Query("language") language: String
     ): Response<GetMovieDiscoveryById>
+
+
+    @GET("/3/search/movie")
+    suspend fun getMovieSearchPage(
+        @Query("page") pageIndex: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("query") movieTitle: String
+    ): Response<GetMovieSearchPage>
+
+//    @GET("/3/discover/movie")
+//    suspend fun getMovieSearchByTitle(
+//        @Query("title") movieTitle: String,
+//        @Query("api_key") apiKey: String,
+//        @Query("language") language: String
+//    ): Response<GetMovieSearchByQuery>
 }
 
