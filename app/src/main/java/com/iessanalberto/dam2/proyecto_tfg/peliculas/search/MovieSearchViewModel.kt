@@ -17,7 +17,7 @@ class MovieSearchViewModel : ViewModel() {
         get() {
             if (field == null || field?.invalid == true) {
                 field = MovieSearchPagingSource(inputSearch) { exception ->
-                    Log.e("LOCAL", exception.toString())
+                    _internalExceptionEventLiveData.postValue(Event(exception))
                 }
             }
             return field

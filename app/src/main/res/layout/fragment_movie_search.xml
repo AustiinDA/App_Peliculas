@@ -44,6 +44,7 @@
                 android:textColor="?colorOnSurface"
                 android:textSize="14sp"
                 android:inputType="textNoSuggestions"
+
                 android:hint="Película a buscar"
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"

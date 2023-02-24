@@ -8,6 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.iessanalberto.dam2.proyecto_tfg.R
 import com.iessanalberto.dam2.proyecto_tfg.databinding.FragmentMovieSearchBinding
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -30,7 +31,13 @@ class MovieSearchFragment : Fragment(R.layout.fragment_movie_search) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMovieSearchBinding.bind(view)
 
-        val epoxyController = MovieSearchEpoxyController { movieId -> }
+        val epoxyController = MovieSearchEpoxyController { movieSelectedId ->
+            val direccion =
+                MovieSearchFragmentDirections.actionMovieSearchFragmentToMovieDetailFragment()
+            direccion.movieId = movieSelectedId
+
+            findNavController().navigate(direccion)
+        }
         binding.epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
         //Busca a traves del search runnable y reinicia los callbacks
         //volviendo a buscar con cierto delay

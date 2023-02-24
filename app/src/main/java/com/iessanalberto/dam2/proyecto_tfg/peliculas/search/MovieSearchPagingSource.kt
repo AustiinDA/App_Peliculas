@@ -7,7 +7,7 @@ import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Search
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
 
 class MovieSearchPagingSource(
-    private val inputSearch: String,
+    private val inputSearch: String = "",
     private val exceptionCall: (InternalException) -> Unit
 ) : PagingSource<Int, Search>() {
 
