@@ -11,17 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.iessanalberto.dam2.proyecto_tfg.R
-import com.iessanalberto.dam2.proyecto_tfg.epoxy.MovieDetailEpoxyController
 
 class MovieDetailFragment : Fragment() {
 
-
     private val viewModel: MovieDetailViewModel by viewModels()
-//    by lazy {
-//        ViewModelProvider(this)[SharedViewModel::class.java]
-//    }
-
-    private val epoxyController = MovieDetailEpoxyController()
     private val safeArgs: MovieDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -34,6 +27,14 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val epoxyController = MovieDetailEpoxyController { personId ->
+            val navDirections = MovieDetailFragmentDirections.actionMovieDetailFragmentToPersonDetailFragment()
+
+            navDirections.personId = personId
+            findNavController().navigate(navDirections)
+
+        }
 
         viewModel.movieLiveData.observe(viewLifecycleOwner) { movie ->
             epoxyController.movie = movie

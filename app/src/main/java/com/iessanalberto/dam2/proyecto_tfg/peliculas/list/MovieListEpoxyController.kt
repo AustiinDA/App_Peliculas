@@ -43,7 +43,6 @@ class MovieListEpoxyController(
     ) : ViewBindingKotlinModel<ModelMovieListItemBinding>(R.layout.model_movie_list_item) {
         override fun ModelMovieListItemBinding.bind() {
             val imgPoster = Constantes.POSTER_PATH
-
             Picasso.get().load(imgPoster + discoverResults.poster_path).into(movieImageView2)
             movieTitleTextView.text = discoverResults.title
 

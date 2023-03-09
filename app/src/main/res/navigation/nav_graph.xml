@@ -27,6 +27,12 @@
             android:name="movieId"
             android:defaultValue="-1"
             app:argType="integer" />
+
+        <action
+            android:id="@+id/action_movieDetailFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+
+
     </fragment>
 
     <fragment
@@ -39,4 +45,16 @@
             app:destination="@id/movieDetailFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/personDetailFragment"
+        android:name="com.iessanalberto.dam2.proyecto_tfg.personas.PersonFragment"
+        android:label="Detalles de personas"
+        tools:layout="@layout/fragment_person_detail">
+
+        <argument
+            android:name="personId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+    </fragment>
 </navigation>

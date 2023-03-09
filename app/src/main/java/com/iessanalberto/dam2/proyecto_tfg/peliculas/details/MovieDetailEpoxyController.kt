@@ -1,4 +1,4 @@
-package com.iessanalberto.dam2.proyecto_tfg.epoxy
+package com.iessanalberto.dam2.proyecto_tfg.peliculas.details
 
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
@@ -11,11 +11,15 @@ import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsHeaderBi
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsImageBinding
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.epoxy.CargaModelos
+import com.iessanalberto.dam2.proyecto_tfg.epoxy.ViewBindingKotlinModel
 import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import com.squareup.picasso.Picasso
 
-class MovieDetailEpoxyController : EpoxyController() {
+class MovieDetailEpoxyController(
+    private val onActorClicked: (Int) -> Unit
+) : EpoxyController() {
 
     //Comprobamos si la  respuesta es nula y asignamos propiedades a la view en los modelos
 
@@ -53,7 +57,6 @@ class MovieDetailEpoxyController : EpoxyController() {
         }
 
         if (movie == null) {
-            //TODO estado de fallo
             return
         }
 
@@ -111,16 +114,20 @@ class MovieDetailEpoxyController : EpoxyController() {
 
         val cast = credits?.cast
             ?.map {
-                    CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path).id(it.id)
+                CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path,
+                    onClick = { actorId ->
+                        onActorClicked(actorId)
+                    }
+                ).id(it.id)
             }
 
-            if (cast != null) {
-                CarouselModel_()
-                    .id("carousel")
-                    .models(cast.take(8))
-                    .numViewsToShowOnScreen(3.5f)
-                    .addTo(this)
-            }
+        if (cast != null) {
+            CarouselModel_()
+                .id("carousel")
+                .models(cast.take(8))
+                .numViewsToShowOnScreen(3.5f)
+                .addTo(this)
+        }
 
     }
 
@@ -185,11 +192,15 @@ class MovieDetailEpoxyController : EpoxyController() {
 
     data class CastCarouselItemEpoxyModel(
         val cast: GetMovieCreditsById.Cast,
-        val img: String
+        val img: String,
+        val onClick: (Int) -> Unit
     ) : ViewBindingKotlinModel<ModelActorCarouselItemBinding>(R.layout.model_actor_carousel_item) {
         override fun ModelActorCarouselItemBinding.bind() {
             castTextView.text = cast.original_name
             Picasso.get().load(img).placeholder(R.drawable.baseline_person_24).into(actorImg)
+            root.setOnClickListener {
+                onClick(cast.id)
+            }
         }
 
     }

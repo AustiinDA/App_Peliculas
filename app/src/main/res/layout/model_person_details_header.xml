@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/actorNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="14dp"
+        android:text="Nombre"
+        android:textColor="?colorOnSurface"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/sexImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/sexImageView"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/actorNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/actorNameTextView"
+        app:srcCompat="@drawable/baseline_female_24" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/birthTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="14dp"
+        android:text="Fecha de nacimiento"
+        android:textColor="?colorOnSurface"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actorNameTextView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cityTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="14dp"
+        android:text="Lugar de nacimiento"
+        android:textColor="?colorOnSurface"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthTextView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/knownTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="14dp"
+        android:text="Conocido por..."
+        android:textColor="?colorOnSurface"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/biographyTitle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="14dp"
+        android:gravity="center"
+        android:text="Biografia"
+        android:textColor="?colorOnSurface"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/knownTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/biographyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:justificationMode="inter_word"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:text="@string/lorem"
+        android:textColor="?colorOnBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/biographyTitle"
+        app:layout_constraintStart_toStartOf="@+id/biographyTitle"
+        app:layout_constraintTop_toBottomOf="@+id/biographyTitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

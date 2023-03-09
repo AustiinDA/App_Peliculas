@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".peliculas.list.MovieListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/epoxyRecyclerView"
@@ -16,4 +15,6 @@
         app:spanCount="2"
         tools:listitem="@layout/model_movie_list_item"
         />
+
+
 </FrameLayout>

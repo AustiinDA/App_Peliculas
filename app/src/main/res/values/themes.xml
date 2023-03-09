@@ -19,6 +19,10 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.Custom.ProyectoTFG" parent="">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
     <style name="Widget.Material3.CardView.Elevated.ProyectoTFG" parent="">
         <item name="cornerSize">15%</item>
         <item name="elevation">15dp</item>

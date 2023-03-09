@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--    Acceso a internet-->
+    <!--    Acceso a internet   -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,16 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_TFG"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=""-->
-<!--            android:exported="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.app.lib_name"-->
-<!--                android:value="" />-->
-<!--        </activity>-->
-
-
-
         <activity android:name=".NavGraphActivity"
             android:exported="true">
             <intent-filter>
@@ -33,6 +23,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <nav-graph android:value="@navigation/nav_graph" />
         </activity>
 
     </application>

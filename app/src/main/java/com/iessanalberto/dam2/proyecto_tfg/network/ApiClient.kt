@@ -67,6 +67,16 @@ class ApiClient(
         }
     }
 
+    suspend fun getPersonById(personId: Int):SimpleResponse<GetPersonById> {
+        return llamadaApiSegura {
+            theMovieDBService.getPersonById(
+                personId,
+                Constantes.API_KEY,
+                Constantes.LANGUAGE
+            )
+        }
+    }
+
     // Funcion parametrizada que recibe un indicador de excepciones y devuelve una respuesta parametrizada
     private inline fun <T> llamadaApiSegura(llamadaApi: () -> Response<T>): SimpleResponse<T> {
         return try {
@@ -75,11 +85,4 @@ class ApiClient(
             SimpleResponse.failure(e)
         }
     }
-//
-//    suspend fun getGenres(genreId: Int): SimpleResponse<GetGenres>{
-//        return llamadaApiSegura { theMovieDBService.getGenres(
-//            Constantes.API_KEY,
-//            Constantes.LANGUAGE
-//        ) }
-//    }
 }

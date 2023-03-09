@@ -28,7 +28,8 @@ class NavGraphActivity : AppCompatActivity() {
             topLevelDestinationIds = setOf(
                 R.id.movieListFragment,
                 R.id.movieDetailFragment,
-                R.id.movieSearchFragment
+                R.id.movieSearchFragment,
+                R.id.personDetailFragment
             ),
             drawerLayout = drawerLayout
         )

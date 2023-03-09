@@ -31,8 +31,9 @@ class MovieSearchPagingSource(
         if (inputSearch.isEmpty()) {
             val internalException = InternalException.BlankSearch
             exceptionCall(internalException)
-            return LoadResult.Error(internalException)
+            return LoadResult.Error(internalException) //algo pasa aqui
         }
+
 
         val pageNum = params.key ?: 1
         val prevKey = if (pageNum == 1) null else pageNum - 1
@@ -48,14 +49,22 @@ class MovieSearchPagingSource(
             return LoadResult.Error(internalException)
         }
 
+        if (pagePetition.bodyNullable?.results?.isEmpty() == true) {
+            val internalException = InternalException.NoResults
+            exceptionCall(internalException)
+            return LoadResult.Error(internalException)
+        }
+
+        val data = pagePetition.bodyNullable?.results?.filter { it.poster_path !=null }
+
         pagePetition.exception?.let {
             return LoadResult.Error(it)
         }
 
         return LoadResult.Page(
-            data = pagePetition.body.results.map { respuesta ->
+            data = data?.map { respuesta ->
                 SearchMapper.buildOf(respuesta)
-            },
+            } ?: emptyList(),
             prevKey = prevKey,
             nextKey = pageNum + 1
         )
