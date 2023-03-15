@@ -15,7 +15,6 @@ Documentación para el proyecto Kotlin de fin de grado.
 - Kotlin 213-1.7.21
 - [Retrofit 2](https://square.github.io/retrofit/)
 - [Android Jetpack](https://developer.android.com/jetpack?hl=es-419)
-- [MongoDB](https://www.mongodb.com/)
 
 ### Metodologías y librerias usadas
 * Arquitectura - Colección de librerias y metodologías para diseñar una app estable y robusta

@@ -49,11 +49,11 @@ class MovieSearchPagingSource(
             return LoadResult.Error(internalException)
         }
 
-        if (pagePetition.bodyNullable?.results?.isEmpty() == true) {
-            val internalException = InternalException.NoResults
-            exceptionCall(internalException)
-            return LoadResult.Error(internalException)
-        }
+//        if (pagePetition.bodyNullable?.results?.isEmpty() == true) {
+//            val internalException = InternalException.NoResults
+//            exceptionCall(internalException)
+//            return LoadResult.Error(internalException)
+//        }
 
         val data = pagePetition.bodyNullable?.results?.filter { it.poster_path !=null }
 
