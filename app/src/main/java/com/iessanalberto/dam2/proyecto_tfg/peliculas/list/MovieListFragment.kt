@@ -27,7 +27,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
             val direccion =
                 MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment()
-            direccion.movieId = movieSelectedId
+            direccion.idPelicula = movieSelectedId
 
             findNavController().navigate(direccion)
         }
@@ -43,9 +43,9 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
 
-    private fun onMovieSelected(movieId: Int) {
+    private fun onMovieSelected(idPelicula: String) {
         val direccion = MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment()
-        direccion.movieId = movieId
+        direccion.idPelicula = idPelicula
 
         findNavController().navigate(direccion)
     }

@@ -11,6 +11,7 @@ import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsHeaderBi
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsImageBinding
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.CargaModelos
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.ViewBindingKotlinModel
 import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
@@ -40,7 +41,7 @@ class MovieDetailEpoxyController(
             }
         }
 
-    var movie: Movie? = null
+    var pelicula: Pelicula? = null
         set(value) {
             field = value
             if (field != null) {
@@ -56,27 +57,27 @@ class MovieDetailEpoxyController(
             return
         }
 
-        if (movie == null) {
+        if (pelicula == null) {
             return
         }
 
         //Asignamos los valores del constructor con los datos de la api, filtrandolos y manejandolos
         ImageEpoxyModel(
 
-            backdropUrl = Constantes.POSTER_PATH + movie!!.backdrop_path,
-            posterUrl = Constantes.POSTER_PATH + movie!!.poster_path
+            backdropUrl = Constantes.POSTER_PATH + pelicula!!.fondo_url,
+            posterUrl = Constantes.POSTER_PATH + pelicula!!.poster_url
 
         ).id("image").addTo(this)
         HeaderEpoxyModel(
 
             //Textos
-            title = movie!!.title,
-            genre = movie!!.genres.joinToString(
+            title = pelicula!!.titulo,
+            genre = pelicula!!.generos.joinToString(
                 separator = ", ",
-                transform = { genre -> genre.name }),
+                transform = { generos -> generos.nombre }),
 
-            date = movie!!.release_date,
-            duration = movie!!.runtime,
+            date = pelicula!!.fecha_lanzamiento,
+            duration = pelicula!!.duracion,
 
 
             ).id("header").addTo(this)
@@ -99,7 +100,7 @@ class MovieDetailEpoxyController(
 
 
         DataEpoxyModel(
-            resume = movie!!.overview
+            resume = pelicula!!.resumen
 
         ).id("data").addTo(this)
 

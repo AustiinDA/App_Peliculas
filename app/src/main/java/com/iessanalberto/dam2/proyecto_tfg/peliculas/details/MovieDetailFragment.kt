@@ -36,10 +36,10 @@ class MovieDetailFragment : Fragment() {
 
         }
 
-        viewModel.movieLiveData.observe(viewLifecycleOwner) { movie ->
-            epoxyController.movie = movie
+        viewModel.peliculaLiveData.observe(viewLifecycleOwner) { pelicula ->
+            epoxyController.pelicula = pelicula
 
-            if (movie == null) {
+            if (pelicula == null) {
                 Toast.makeText(
                     requireActivity(), "Llamada de red fallida",
                     Toast.LENGTH_SHORT
@@ -49,22 +49,22 @@ class MovieDetailFragment : Fragment() {
                 return@observe
             }
         }
-        viewModel.tomarPelicula(movieId = safeArgs.movieId)
+//        viewModel.tomarPelicula(idPelicula = safeArgs.movieId)
 
-        viewModel.movieLiveDataCredits.observe(viewLifecycleOwner) { credits ->
-            epoxyController.credits = credits
-
-            if (credits == null) {
-                Toast.makeText(
-                    requireActivity(), "Llamada de red fallida",
-                    Toast.LENGTH_SHORT
-                ).show()
-                findNavController().navigateUp()
-
-                return@observe
-            }
-        }
-        viewModel.tomarCreditos(movieId = safeArgs.movieId)
+//        viewModel.movieLiveDataCredits.observe(viewLifecycleOwner) { credits ->
+//            epoxyController.credits = credits
+//
+//            if (credits == null) {
+//                Toast.makeText(
+//                    requireActivity(), "Llamada de red fallida",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                findNavController().navigateUp()
+//
+//                return@observe
+//            }
+//        }
+//        viewModel.tomarCreditos(movieId = safeArgs.movieId)
 
 
         val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)

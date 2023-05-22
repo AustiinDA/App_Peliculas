@@ -24,9 +24,9 @@
         tools:layout="@layout/fragment_movie_detail">
 
         <argument
-            android:name="movieId"
+            android:name="IdPelicula"
             android:defaultValue="-1"
-            app:argType="integer" />
+            app:argType="string" />
 
         <action
             android:id="@+id/action_movieDetailFragment_to_personDetailFragment"

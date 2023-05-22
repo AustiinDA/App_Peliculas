@@ -1,37 +1,36 @@
 package com.iessanalberto.dam2.proyecto_tfg.peliculas
 
-import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.CreditsMapper
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.DiscoverMapper
-import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MovieMapper
-import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorDescubrir
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorPelicula
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Descubrir
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Discover
-import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieDiscoveryPage
 
 class MovieRepository {
-    suspend fun fetchMoviePage(pageIndex: Int): GetMovieDiscoveryPage? {
-        val pagina = Network.clienteApi.getMovieDiscoveryPage(pageIndex)
-        if (!pagina.isSuccessful) {
-            return null
-        }
+//    suspend fun fetchMoviePage(pageIndex: Int): GetMovieDiscoveryPage? {
+//        val pagina = Network.clienteApi.getMovieDiscoveryPage(pageIndex)
+//        if (!pagina.isSuccessful) {
+//            return null
+//        }
+//
+//        return pagina.body
+//    }
 
-        return pagina.body
-    }
-
-    suspend fun getMovieDiscovery(): Discover? {
-        val peticion = Network.clienteApi.getMovieDiscoveryById()
+    suspend fun getDescubrirPeliculas(): Descubrir? {
+        val peticion = Network.clienteApi.getDescubrirPeliculas()
         if (!peticion.isSuccessful){
             return null
         }
 
-        return DiscoverMapper.buildOf(
+        return MapeadorDescubrir.construirDe(
             respuesta = peticion.body
         )
     }
 
-    suspend fun getMovieById(movieId: Int): Movie? {
-        val peticion = Network.clienteApi.getMovieById(movieId)
+    suspend fun getPeliculaPorId(idPelicula: String): Pelicula? {
+        val peticion = Network.clienteApi.getPeliculaPorId(idPelicula)
 
         //Recibimos una llamada a la Api, pero en vez de crashear la app, devolvemos un estado de fallo
         if (peticion.failed) {
@@ -42,33 +41,27 @@ class MovieRepository {
             return null
         }
 
-        return MovieMapper.buildOf(
+        return MapeadorPelicula.construirDe(
             respuesta = peticion.body
         )
     }
 
-    suspend fun getMovieCreditsById(movieId: Int): Credits? {
-        val peticion = Network.clienteApi.getMovieCreditsById(movieId)
-
-        if (peticion.failed) {
-            return null
-        }
-
-        if (!peticion.isSuccessful) {
-            return null
-        }
-
-        return CreditsMapper.buildOf(
-            respuesta = peticion.body,
-            crew = peticion.body.crew,
-            cast = peticion.body.cast
-        )
-    }
-
-//    private suspend fun getMoviesFromDiscovery(
-//        movieById: GetMovieById
-//    ):List<GetMovieDiscoveryById>{
-//        val movieList = movieById.
+//    suspend fun getMovieCreditsById(movieId: Int): Credits? {
+//        val peticion = Network.clienteApi.getMovieCreditsById(movieId)
+//
+//        if (peticion.failed) {
+//            return null
+//        }
+//
+//        if (!peticion.isSuccessful) {
+//            return null
+//        }
+//
+//        return CreditsMapper.buildOf(
+//            respuesta = peticion.body,
+//            crew = peticion.body.crew,
+//            cast = peticion.body.cast
+//        )
 //    }
 
 }

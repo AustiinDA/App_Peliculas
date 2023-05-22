@@ -5,7 +5,7 @@ import com.airbnb.epoxy.paging3.PagingDataEpoxyController
 import com.iessanalberto.dam2.proyecto_tfg.R
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelDiscoverListTitleBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieListItemBinding
-import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Discover
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Descubrir
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.ViewBindingKotlinModel
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import com.squareup.picasso.Picasso
@@ -14,19 +14,19 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 
 @OptIn(ObsoleteCoroutinesApi::class)
 class MovieListEpoxyController(
-    private val onMovieSelected: (Int) -> Unit
+    private val onPeliculaSeleccionada: (String) -> Unit
 ) : PagingDataEpoxyController<DiscoverInterfaceModel>() {
 
     override fun buildItemModel(currentPosition: Int, item: DiscoverInterfaceModel?): EpoxyModel<*> {
         return when (item!!){
             is DiscoverInterfaceModel.Item -> {
-                val discover = (item as DiscoverInterfaceModel.Item).discover
+                val descubrir = (item as DiscoverInterfaceModel.Item).descubrir
                 MovieDiscoverGridItemEpoxyModel(
-                    discoverResults = discover,
-                    onClick = {movieId ->
-                        onMovieSelected(movieId)
+                    resultados = descubrir,
+                    onClick = {idPelicula ->
+                        onPeliculaSeleccionada(idPelicula)
                     }
-                ).id(discover.id)
+                ).id(descubrir.id)
             }
 
             is DiscoverInterfaceModel.Header -> {
@@ -38,15 +38,15 @@ class MovieListEpoxyController(
     }
 
     data class MovieDiscoverGridItemEpoxyModel(
-        val onClick: (Int) -> Unit,
-        val discoverResults: Discover
+        val onClick: (String) -> Unit,
+        val resultados: Descubrir
     ) : ViewBindingKotlinModel<ModelMovieListItemBinding>(R.layout.model_movie_list_item) {
         override fun ModelMovieListItemBinding.bind() {
             val imgPoster = Constantes.POSTER_PATH
-            Picasso.get().load(imgPoster + discoverResults.poster_path).into(movieImageView2)
-            movieTitleTextView.text = discoverResults.title
+            Picasso.get().load(imgPoster + resultados.poster_url).into(movieImageView2)
+            movieTitleTextView.text = resultados.titulo
 
-            root.setOnClickListener{onClick(discoverResults.id)}
+            root.setOnClickListener{onClick(resultados.id)}
         }
     }
 

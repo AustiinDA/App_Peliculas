@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
 import com.iessanalberto.dam2.proyecto_tfg.network.AppCache
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieById
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
 import kotlinx.coroutines.launch
 
 class SharedViewModel : ViewModel() {
@@ -18,38 +17,38 @@ class SharedViewModel : ViewModel() {
     // pueda cambiar los datos, queremos que solo pueda leerlos. Y solo podremos modificarlo en esta SharedViewModel
     // siguiendo el modelo MVVM
 
-    private val _movieByIdLiveData = MutableLiveData<Movie?>()
+    private val _movieByIdLiveData = MutableLiveData<Pelicula?>()
     private val _movieCreditsByIdLiveData = MutableLiveData<Credits?>()
 
-    val movieByIdLiveData: LiveData<Movie?> = _movieByIdLiveData
+    val movieByIdLiveData: LiveData<Pelicula?> = _movieByIdLiveData
     val movieCreditsById: LiveData<Credits?> = _movieCreditsByIdLiveData
 
-    fun actualizarPelicula(movieId: Int) {
+    fun actualizarPelicula(idPelicula: String) {
         //Observa los datos en cache de una pelicula
-        val cacheMovie = AppCache.movieMap[movieId]
+        val cacheMovie = AppCache.movieMap[idPelicula]
         if (cacheMovie != null) {
             _movieByIdLiveData.postValue(cacheMovie)
             return
         }
         //En caso de fallo hara una llamada de la pelicula
         viewModelScope.launch {
-            val respuesta = repositorio.getMovieById(movieId)
+            val respuesta = repositorio.getPeliculasPorId(idPelicula)
 
             _movieByIdLiveData.postValue(respuesta)
 
             //Dentro de la corrutina, obtenemos respuesta del repositorio y le damos los datos a nuestro LiveData
             //Si la respuesta no es nula, actualizamos los datos en cache con esos datos no nulos
             respuesta?.let {
-                AppCache.movieMap[movieId] = it
+                AppCache.movieMap[idPelicula] = it
             }
         }
     }
 
-    fun actualizarCreditosPelicula(movieId: Int) {
-        viewModelScope.launch {
-            val respuesta = repositorio.getMovieCreditsById(movieId)
-
-            _movieCreditsByIdLiveData.postValue(respuesta)
-        }
-    }
+//    fun actualizarCreditosPelicula(movieId: Int) {
+//        viewModelScope.launch {
+//            val respuesta = repositorio.getMovieCreditsById(movieId)
+//
+//            _movieCreditsByIdLiveData.postValue(respuesta)
+//        }
+//    }
 }

@@ -2,7 +2,7 @@ package com.iessanalberto.dam2.proyecto_tfg.peliculas
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.DiscoverMapper
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorDescubrir
 import com.iessanalberto.dam2.proyecto_tfg.network.Network
 import com.iessanalberto.dam2.proyecto_tfg.peliculas.list.DiscoverInterfaceModel
 
@@ -14,15 +14,15 @@ class MoviePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DiscoverInterfaceModel> {
         val pageNum = params.key ?: 1
         val prevKey = if (pageNum == 1) null else pageNum - 1
-        val pagePetition = Network.clienteApi.getMovieDiscoveryPage(pageNum)
+        val pagePetition = Network.clienteApi.getDescubrirPeliculasPaginadas(pageNum)
 
         pagePetition.exception?.let {
             return LoadResult.Error(it)
         }
 
         return LoadResult.Page(
-            data = pagePetition.body.results.map { respuesta ->
-                DiscoverInterfaceModel.Item(DiscoverMapper.buildOf(respuesta))
+            data = pagePetition.body.resultados.map { respuesta ->
+                DiscoverInterfaceModel.Item(MapeadorDescubrir.construirDe(respuesta))
             },
             prevKey = prevKey,
             nextKey = pageNum + 1
