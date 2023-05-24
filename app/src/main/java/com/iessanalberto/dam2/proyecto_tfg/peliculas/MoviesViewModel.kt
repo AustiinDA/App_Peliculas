@@ -20,6 +20,7 @@ class MoviesViewModel : ViewModel() {
         // PagingConfig, such as prefetchDistance.
         PagingConfig(
             pageSize = Constantes.PAGE_SIZE,
+            maxSize = 100,
             initialLoadSize = 1,
             prefetchDistance = Constantes.PREFETCH_DISTANCE,
             enablePlaceholders = false

@@ -49,7 +49,7 @@ class MovieDetailFragment : Fragment() {
                 return@observe
             }
         }
-//        viewModel.tomarPelicula(idPelicula = safeArgs.movieId)
+        viewModel.tomarPelicula(idPelicula = safeArgs.idPelicula)
 
 //        viewModel.movieLiveDataCredits.observe(viewLifecycleOwner) { credits ->
 //            epoxyController.credits = credits

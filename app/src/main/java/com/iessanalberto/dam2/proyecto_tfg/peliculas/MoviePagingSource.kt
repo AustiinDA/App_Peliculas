@@ -12,21 +12,30 @@ class MoviePagingSource(
 ) : PagingSource<Int, DiscoverInterfaceModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DiscoverInterfaceModel> {
-        val pageNum = params.key ?: 1
-        val prevKey = if (pageNum == 1) null else pageNum - 1
-        val pagePetition = Network.clienteApi.getDescubrirPeliculasPaginadas(pageNum)
+        try {
 
-        pagePetition.exception?.let {
-            return LoadResult.Error(it)
+
+            val pageNum = params.key ?: 1
+            val prevKey = if (pageNum == 1) null else pageNum - 1
+            val pagePetition = Network.clienteApi.getDescubrirPeliculasPaginadas(pageNum)
+
+            pagePetition.exception?.let {
+                return LoadResult.Error(it)
+            }
+
+            val resultados = pagePetition.body.resultados
+            val nextPageNum = if (resultados.isNotEmpty()) pageNum + 1 else null
+
+            return LoadResult.Page(
+                data = pagePetition.body.resultados.map { respuesta ->
+                    DiscoverInterfaceModel.Item(MapeadorDescubrir.construirDe(respuesta))
+                },
+                prevKey = prevKey,
+                nextKey = nextPageNum
+            )
+        } catch (e: Exception) {
+            return LoadResult.Error(e)
         }
-
-        return LoadResult.Page(
-            data = pagePetition.body.resultados.map { respuesta ->
-                DiscoverInterfaceModel.Item(MapeadorDescubrir.construirDe(respuesta))
-            },
-            prevKey = prevKey,
-            nextKey = pageNum + 1
-        )
     }
 
     override fun getRefreshKey(state: PagingState<Int, DiscoverInterfaceModel>): Int? {
