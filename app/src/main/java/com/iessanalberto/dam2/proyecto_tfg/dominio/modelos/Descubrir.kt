@@ -6,7 +6,7 @@ data class Descubrir(
     val fondo_url: String? = "",
 //    val generos: List<Genero> = listOf(),
     val id: String = "",
-    val poster_url: String = "",
+    val poster_url: String? = "",
     val resumen: String = "",
     val titulo: String = ""
 )

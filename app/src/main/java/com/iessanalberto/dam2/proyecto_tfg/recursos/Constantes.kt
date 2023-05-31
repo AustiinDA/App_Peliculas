@@ -7,6 +7,6 @@ object Constantes {
     const val PAGE: Int = 1
     const val LANGUAGE: String = "es-ES"
 
-    const val PAGE_SIZE = 10
+    const val PAGE_SIZE = 6
     const val PREFETCH_DISTANCE = PAGE_SIZE*2
 }

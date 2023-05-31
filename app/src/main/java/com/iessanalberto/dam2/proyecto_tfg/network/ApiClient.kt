@@ -2,7 +2,6 @@ package com.iessanalberto.dam2.proyecto_tfg.network
 
 import com.iessanalberto.dam2.proyecto_tfg.interfaces.TheMovieDBService
 import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.*
-import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import retrofit2.Response
 
 class ApiClient(
@@ -31,8 +30,16 @@ class ApiClient(
         }
     }
 
+    suspend fun getCreditosPorIdPelicula(idPelicula: String): SimpleResponse<GetDevolverCreditosPorIdPelicula> {
+        return llamadaApiSegura {
+            theMovieDBService.getCreditosPorPeliculaId(
+                idPelicula
+            )
+        }
+    }
 
-//    suspend fun getMovieById(movieId: Int): SimpleResponse<GetMovieById> {
+
+    //    suspend fun getMovieById(movieId: Int): SimpleResponse<GetMovieById> {
 //        return llamadaApiSegura {
 //            theMovieDBService.getMovieById(
 //                movieId,
@@ -62,6 +69,19 @@ class ApiClient(
 //        }
 //    }
 //
+    suspend fun getBuscarPeliculaPorTitulo(
+        pagina: Int,
+        tituloPelicula: String
+    ): SimpleResponse<GetDevolverTodasPeliculasPaginado> {
+        return llamadaApiSegura {
+            theMovieDBService.getBusquedaPeliculasPaginadas(
+                pagina,
+                tituloPelicula
+            )
+        }
+    }
+
+
 //    suspend fun getMovieSearchPage(pageIndex: Int, movieTitle: String): SimpleResponse<GetMovieSearchPage> {
 //        return llamadaApiSegura {
 //            theMovieDBService.getMovieSearchPage(

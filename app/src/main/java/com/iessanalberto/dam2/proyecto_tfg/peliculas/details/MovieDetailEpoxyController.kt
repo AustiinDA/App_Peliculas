@@ -9,17 +9,18 @@ import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieCreditsBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsDataBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsHeaderBinding
 import com.iessanalberto.dam2.proyecto_tfg.databinding.ModelMovieDetailsImageBinding
-import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Credits
-import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Movie
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Creditos
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Elenco
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.EquipoProduccion
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.CargaModelos
 import com.iessanalberto.dam2.proyecto_tfg.epoxy.ViewBindingKotlinModel
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetMovieCreditsById
+import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetDevolverCreditosPorIdPelicula
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import com.squareup.picasso.Picasso
 
 class MovieDetailEpoxyController(
-    private val onActorClicked: (Int) -> Unit
+//    private val enActorClicado: (String) -> Unit
 ) : EpoxyController() {
 
     //Comprobamos si la  respuesta es nula y asignamos propiedades a la view en los modelos
@@ -32,7 +33,7 @@ class MovieDetailEpoxyController(
             }
         }
 
-    var credits: Credits? = null
+    var creditos: Creditos? = null
         set(value) {
             field = value
             if (field != null) {
@@ -85,12 +86,12 @@ class MovieDetailEpoxyController(
 
 
 
-        credits?.crew?.let {
+        creditos?.equipoProduccion?.let {
             HeaderCreditsEpoxyModel(
                 //iteramos y filtramos los directores
                 director = it
                     .filter { item ->
-                        item.job == "Director"
+                        item.trabajo == "Director"
                     }
             ).id("credits").addTo(this)
         }
@@ -113,12 +114,12 @@ class MovieDetailEpoxyController(
 // Display de actores con scroll horizontal
         val imgActor = Constantes.POSTER_PATH
 
-        val cast = credits?.cast
+        val cast = creditos?.elenco
             ?.map {
-                CastCarouselItemEpoxyModel(it, img = imgActor + it.profile_path,
-                    onClick = { actorId ->
-                        onActorClicked(actorId)
-                    }
+                CastCarouselItemEpoxyModel(it, img = imgActor + it.foto_url
+//                    ,onClick = { actorId ->
+//                        enActorClicado(actorId)
+//                    }
                 ).id(it.id)
             }
 
@@ -154,11 +155,11 @@ class MovieDetailEpoxyController(
     }
 
     data class HeaderCreditsEpoxyModel(
-        val director: List<GetMovieCreditsById.Crew>
+        val director: List<EquipoProduccion>
     ) : ViewBindingKotlinModel<ModelMovieCreditsBinding>(R.layout.model_movie_credits) {
         override fun ModelMovieCreditsBinding.bind() {
             directorDescTextView.text = director.joinToString(
-                transform = { item -> item.name }
+                transform = { item -> item.nombre }
             )
         }
     }
@@ -192,16 +193,16 @@ class MovieDetailEpoxyController(
     }
 
     data class CastCarouselItemEpoxyModel(
-        val cast: GetMovieCreditsById.Cast,
+        val elenco: Elenco,
         val img: String,
-        val onClick: (Int) -> Unit
+//        val onClick: (String) -> Unit
     ) : ViewBindingKotlinModel<ModelActorCarouselItemBinding>(R.layout.model_actor_carousel_item) {
         override fun ModelActorCarouselItemBinding.bind() {
-            castTextView.text = cast.original_name
+            castTextView.text = elenco.nombre
             Picasso.get().load(img).placeholder(R.drawable.baseline_person_24).into(actorImg)
-            root.setOnClickListener {
-                onClick(cast.id)
-            }
+//            root.setOnClickListener {
+//                onClick(elenco.id)
+//            }
         }
 
     }

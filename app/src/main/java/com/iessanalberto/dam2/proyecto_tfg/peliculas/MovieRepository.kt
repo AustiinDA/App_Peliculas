@@ -1,8 +1,10 @@
 package com.iessanalberto.dam2.proyecto_tfg.peliculas
 
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.DiscoverMapper
+import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorCreditos
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorDescubrir
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorPelicula
+import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Creditos
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Descubrir
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Discover
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
@@ -63,5 +65,21 @@ class MovieRepository {
 //            cast = peticion.body.cast
 //        )
 //    }
+
+    suspend fun getCreditosPorIdPelicula(peliculaId: String): Creditos? {
+        val peticion = Network.clienteApi.getCreditosPorIdPelicula(peliculaId)
+
+        if (peticion.failed) {
+            return null
+        }
+
+        if (!peticion.isSuccessful) {
+            return null
+        }
+
+        return MapeadorCreditos.construirDe(
+            respuesta = peticion.body
+        )
+    }
 
 }

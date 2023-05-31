@@ -52,9 +52,9 @@
         tools:layout="@layout/fragment_person_detail">
 
         <argument
-            android:name="personId"
+            android:name="actorId"
             android:defaultValue="-1"
-            app:argType="integer" />
+            app:argType="string" />
 
     </fragment>
 </navigation>

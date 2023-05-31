@@ -28,13 +28,14 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val epoxyController = MovieDetailEpoxyController { personId ->
-            val navDirections = MovieDetailFragmentDirections.actionMovieDetailFragmentToPersonDetailFragment()
-
-            navDirections.personId = personId
-            findNavController().navigate(navDirections)
-
-        }
+        val epoxyController = MovieDetailEpoxyController()
+//        { actorId ->
+//            val navDirections = MovieDetailFragmentDirections.actionMovieDetailFragmentToPersonDetailFragment()
+//
+//            navDirections.actorId = actorId
+//            findNavController().navigate(navDirections)
+//
+//        }
 
         viewModel.peliculaLiveData.observe(viewLifecycleOwner) { pelicula ->
             epoxyController.pelicula = pelicula
@@ -51,20 +52,23 @@ class MovieDetailFragment : Fragment() {
         }
         viewModel.tomarPelicula(idPelicula = safeArgs.idPelicula)
 
-//        viewModel.movieLiveDataCredits.observe(viewLifecycleOwner) { credits ->
-//            epoxyController.credits = credits
-//
-//            if (credits == null) {
-//                Toast.makeText(
-//                    requireActivity(), "Llamada de red fallida",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                findNavController().navigateUp()
-//
-//                return@observe
-//            }
-//        }
-//        viewModel.tomarCreditos(movieId = safeArgs.movieId)
+        viewModel.movieLiveDataCredits.observe(viewLifecycleOwner) { creditos ->
+            epoxyController.creditos = creditos
+
+            if (creditos == null) {
+                Toast.makeText(
+                    requireActivity(), "Llamada de red fallida",
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().navigateUp()
+
+                return@observe
+            }
+            epoxyController.creditos = creditos
+            epoxyController.requestModelBuild()
+
+        }
+        viewModel.tomarCreditos(idPelicula = safeArgs.idPelicula)
 
 
         val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)
