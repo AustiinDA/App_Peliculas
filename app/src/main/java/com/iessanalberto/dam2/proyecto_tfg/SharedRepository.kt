@@ -2,12 +2,12 @@ package com.iessanalberto.dam2.proyecto_tfg
 
 import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorPelicula
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
-import com.iessanalberto.dam2.proyecto_tfg.network.Network
+import com.iessanalberto.dam2.proyecto_tfg.red.PeliculasNetwork
 
 class SharedRepository {
 
     suspend fun getPeliculasPorId(idPelicula: String): Pelicula? {
-        val peticion = Network.clienteApi.getPeliculaPorId(idPelicula)
+        val peticion = PeliculasNetwork.clienteApi.getPeliculaPorId(idPelicula)
 
         //Recibimos una llamada a la Api, pero en vez de crashear la app, devolvemos un estado de fallo
         if (peticion.failed) {

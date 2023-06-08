@@ -1,11 +1,11 @@
 package com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores
 
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Descubrir
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetDevolverTodasPeliculas
+import com.iessanalberto.dam2.proyecto_tfg.red.respuestas.GetDevolverPeliculas
 
 object MapeadorDescubrir {
     fun construirDe(
-      respuesta: GetDevolverTodasPeliculas
+      respuesta: GetDevolverPeliculas
     ): Descubrir {
         return Descubrir(
             duracion = respuesta.duracion,

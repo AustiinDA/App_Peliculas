@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 
 
 //Documentacion https://developer.android.com/guide/navigation/navigation-getting-started?hl=es-419
+//La clase se encarga de la navegación usando el Drawer Layout
 class NavGraphActivity : AppCompatActivity() {
     private lateinit var appBarConfig: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {

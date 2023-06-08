@@ -1,8 +1,7 @@
 package com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores
 
-import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Creditos
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Elenco
-import com.iessanalberto.dam2.proyecto_tfg.network.respuestas.GetDevolverCreditosPorIdPelicula
+import com.iessanalberto.dam2.proyecto_tfg.red.respuestas.GetDevolverCreditosPorIdPelicula
 
 object MapeadorElenco {
     fun construirDe(

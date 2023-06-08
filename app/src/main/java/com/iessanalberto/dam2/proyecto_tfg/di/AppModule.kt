@@ -3,9 +3,8 @@ package com.iessanalberto.dam2.proyecto_tfg.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.iessanalberto.dam2.proyecto_tfg.TFGApplication
-import com.iessanalberto.dam2.proyecto_tfg.network.ApiClient
-import com.iessanalberto.dam2.proyecto_tfg.network.Network
+import com.iessanalberto.dam2.proyecto_tfg.red.ClienteApi
+import com.iessanalberto.dam2.proyecto_tfg.red.PeliculasNetwork
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
 import dagger.Module
 import dagger.Provides
@@ -16,7 +15,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 /*Esta clase nos sirve para inyectar dependencias sin obtener las fugas de memoria de "context"*/
 //TODO Aun sin implementar las inyecciones a las vistas y fragmentos
@@ -54,11 +52,11 @@ class AppModule {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(Constantes.URL_BASE)
-            .addConverterFactory(MoshiConverterFactory.create(Network.moshi))
+            .addConverterFactory(MoshiConverterFactory.create(PeliculasNetwork.moshi))
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideApi(retrofit: Retrofit): ApiClient = retrofit.create(ApiClient::class.java)
+    fun provideApi(retrofit: Retrofit): ClienteApi = retrofit.create(ClienteApi::class.java)
 }
