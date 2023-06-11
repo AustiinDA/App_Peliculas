@@ -8,7 +8,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.iessanalberto.dam2.proyecto_tfg.recursos.Constantes
-import com.iessanalberto.dam2.proyecto_tfg.recursos.Event
+import com.iessanalberto.dam2.proyecto_tfg.recursos.Evento
 
 class BusquedaViewModel : ViewModel() {
     private var inputSearch: String = ""
@@ -16,7 +16,7 @@ class BusquedaViewModel : ViewModel() {
         get() {
             if (field == null || field?.invalid == true) {
                 field = BusquedaPagingSource(inputSearch) { exception ->
-                    _internalExceptionEventLiveData.postValue(Event(exception))
+                    _internalExceptionEventLiveData.postValue(Evento(exception))
                 }
             }
             return field
@@ -34,8 +34,8 @@ class BusquedaViewModel : ViewModel() {
         movieSource!!
     }.flow.cachedIn(viewModelScope)
 
-    private val _internalExceptionEventLiveData = MutableLiveData<Event<BusquedaPagingSource.InternalException>>()
-    val internalExceptionEventLiveData: LiveData<Event<BusquedaPagingSource.InternalException>> = _internalExceptionEventLiveData
+    private val _internalExceptionEventLiveData = MutableLiveData<Evento<BusquedaPagingSource.InternalException>>()
+    val internalExceptionEventLiveData: LiveData<Evento<BusquedaPagingSource.InternalException>> = _internalExceptionEventLiveData
     fun buscarPeticion(search: String) {
         inputSearch = search
         movieSource?.invalidate()
