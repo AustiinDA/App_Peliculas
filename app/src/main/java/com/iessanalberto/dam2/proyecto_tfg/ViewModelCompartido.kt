@@ -9,8 +9,8 @@ import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
 import com.iessanalberto.dam2.proyecto_tfg.red.AppCache
 import kotlinx.coroutines.launch
 
-class SharedViewModel : ViewModel() {
-    private val repositorio = SharedRepository()
+class ViewModelCompartido : ViewModel() {
+    private val repositorio = RepositorioCompartido()
 
     // Usamos LiveData y MutableLiveData para evitar que cualquier item que este escuchando a estos datos
     // pueda cambiar los datos, queremos que solo pueda leerlos. Y solo podremos modificarlo en esta SharedViewModel

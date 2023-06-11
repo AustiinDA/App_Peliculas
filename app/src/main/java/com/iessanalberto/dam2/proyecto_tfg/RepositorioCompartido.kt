@@ -4,7 +4,7 @@ import com.iessanalberto.dam2.proyecto_tfg.dominio.mapeadores.MapeadorPelicula
 import com.iessanalberto.dam2.proyecto_tfg.dominio.modelos.Pelicula
 import com.iessanalberto.dam2.proyecto_tfg.red.PeliculasNetwork
 
-class SharedRepository {
+class RepositorioCompartido {
 
     suspend fun getPeliculasPorId(idPelicula: String): Pelicula? {
         val peticion = PeliculasNetwork.clienteApi.getPeliculaPorId(idPelicula)
