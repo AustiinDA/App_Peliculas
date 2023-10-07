@@ -1,12 +1,10 @@
-# Proyecto Final de Grado
+# Proyecto de app de Películas
 
-Documentación para el proyecto Kotlin de fin de grado.
+Documentación para el proyecto Kotlin.
 
 **Tabla de contenidos**
 
-1. [Introducción a la aplicación](#introducciona-la-aplicacion)
-
-
+[Introducción a la aplicación](#introducciona-la-aplicacion)
 
 ## Introducción a la aplicación
 
